@@ -1,0 +1,64 @@
+.message_frame {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.message_frame textarea {
+  min-height: 50px;
+  overflow-y: hidden;
+  resize: none;
+  width: 50%;
+  box-sizing: border-box;
+  font-size: 2ch;
+  padding: 10px;
+  border-radius: 5px;
+
+  background-color: rgb(19, 20, 22);
+  color: rgb(204, 204, 207);
+}
+
+.message_frame textarea:focus {
+  outline-color: rgb(86, 98, 246);
+}
+
+.message_frame input {
+  min-height: 3ch;
+  width: 50%;
+  font-size: 1.7ch;
+  box-sizing: border-box;
+  border-style: solid;
+  border-radius: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  background-color: rgb(19, 20, 22);
+  color: rgb(204, 204, 207);
+}
+
+.message_frame input:focus {
+  outline-color: rgb(86, 98, 246);
+}
+
+.message_frame_separator {
+  height: 20px;
+}
+
+.message_frame button {
+  width: 20%;
+  height: 3.5ch;
+  background-color: rgb(88, 101, 242);
+  color: rgb(251, 251, 255);
+
+  border: 1px solid rgb(96, 96, 96);
+  border: none;
+  border-radius: 2px;
+}
+
+.message_frame button:active {
+  background-color: rgb(93, 106, 255);
+}
