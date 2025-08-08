@@ -12,6 +12,7 @@ function NavigationRow(args: NavigationRowArgs) {
   return (
     <div className="navigation_row">
       <NavButton
+        position="left"
         name="Сообщение"
         cssProps={frameState == 0 ? activeFrameStyle : inActiveFrameStyle}
         callback={() => {
@@ -20,6 +21,7 @@ function NavigationRow(args: NavigationRowArgs) {
         }}
       />
       <NavButton
+        position="center"
         name="Пользователи"
         cssProps={frameState == 1 ? activeFrameStyle : inActiveFrameStyle}
         callback={() => {
@@ -28,6 +30,7 @@ function NavigationRow(args: NavigationRowArgs) {
         }}
       />
       <NavButton
+        position="right"
         name="Канал"
         cssProps={frameState == 2 ? activeFrameStyle : inActiveFrameStyle}
         callback={() => {

@@ -4,8 +4,6 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
-
-  color: white;
 }
 
 body {
@@ -21,5 +19,5 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(2, 22, 38);
 }

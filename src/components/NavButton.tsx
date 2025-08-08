@@ -4,13 +4,20 @@ interface NavButtonArgs {
   name: String;
   callback: () => void;
   cssProps: React.CSSProperties;
+  position: "left" | "center" | "right";
 }
 
 function NavButton(args: NavButtonArgs) {
+  let cssProperties: React.CSSProperties = {
+    ...args.cssProps,
+    borderTopRightRadius: args.position === "right" ? "10px" : "0",
+    borderTopLeftRadius: args.position === "left" ? "10px" : "0",
+  };
+
   return (
     <button
       className="nav_button"
-      style={args.cssProps}
+      style={cssProperties}
       onClick={() => args.callback()}
     >
       {args.name}
