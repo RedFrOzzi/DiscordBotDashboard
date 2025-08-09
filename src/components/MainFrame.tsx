@@ -17,7 +17,14 @@ function MainFrame() {
 function SwitchRender(state: number) {
   switch (state) {
     case 0:
-      return <MessageFrame />;
+      return (
+        <MessageFrame
+          channels={[
+            { id: "1", name: "Poop" },
+            { id: "2", name: "Loop" },
+          ]}
+        />
+      );
     case 1:
       return <h1>Second</h1>;
     case 2:

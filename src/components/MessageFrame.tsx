@@ -1,11 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/MessageFrame.css";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import ArrowRight from "../svg/ArrowRight.tsx";
+import DropdownList from "./DropdownList.tsx";
+import Channel from "../types/Channel.ts";
 
-function MessageFrame() {
+interface MessageFrameArgs {
+  channels: Channel[];
+}
+
+function MessageFrame(args: MessageFrameArgs) {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [text, setText] = useState("");
+  const [channel, setChannel] = useState<Channel>(args.channels[0]);
+  const [isOpen, setOpen] = useState<Boolean>(false);
 
   const sendMessage = useMutation({
     mutationFn: SendMessageMutation,
@@ -25,7 +34,29 @@ function MessageFrame() {
 
   return (
     <div className="message_frame">
-      <input ref={inputRef} type="text" placeholder="ID канала" />
+      <div className="input_row">
+        <button className="ch_id_button" onClick={() => setOpen(true)}>
+          <ArrowRight />
+        </button>
+
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="ID канала"
+          value={channel.name}
+          readOnly
+          onClick={() => setOpen(true)}
+        />
+      </div>
+      {isOpen ? (
+        <DropdownList
+          channels={args.channels}
+          onSelectChannel={setChannel}
+          onLosingFocus={() => setOpen(false)}
+        />
+      ) : (
+        <></>
+      )}
       <div className="message_frame_separator"></div>
       <textarea
         ref={textAreaRef}
@@ -33,8 +64,10 @@ function MessageFrame() {
         onChange={handleText}
         placeholder="Сообщение..."
       ></textarea>
+
       <div className="message_frame_separator"></div>
       <button
+        className="send_button"
         onClick={() =>
           sendMessage.mutate({
             channel: inputRef.current!.value,

@@ -23,12 +23,47 @@
 }
 
 .message_frame textarea:focus {
-  outline-color: rgb(86, 98, 246);
+  outline: none;
+  border: 1px solid rgb(86, 98, 246);
+}
+
+.input_row {
+  min-height: 3ch;
+  width: 50%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ch_id_button {
+  width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  padding: 0;
+
+  border: 1px solid rgb(96, 96, 96);
+  border: none;
+  border-radius: 2px;
+
+  background-color: rgb(88, 101, 242);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ch_id_button svg {
+  margin-left: 3px;
+}
+
+.ch_id_button:active {
+  background-color: rgb(93, 106, 255);
 }
 
 .message_frame input {
-  min-height: 3ch;
-  width: 50%;
+  width: 90%;
+  height: 25px;
   font-size: 1.7ch;
   box-sizing: border-box;
   border-style: solid;
@@ -41,14 +76,15 @@
 }
 
 .message_frame input:focus {
-  outline-color: rgb(86, 98, 246);
+  outline: none;
+  border: 2px solid rgb(86, 98, 246);
 }
 
 .message_frame_separator {
   height: 20px;
 }
 
-.message_frame button {
+.send_button {
   width: 20%;
   height: 3.5ch;
   background-color: rgb(88, 101, 242);
@@ -59,6 +95,6 @@
   border-radius: 2px;
 }
 
-.message_frame button:active {
+.send_button:active {
   background-color: rgb(93, 106, 255);
 }
