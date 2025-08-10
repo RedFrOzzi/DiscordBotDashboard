@@ -2,9 +2,9 @@
   width: 80%;
   height: 80%;
 
-  border: 1px solid rgb(96, 96, 96);
+  border: 1px solid var(--border_color_grey);
   border-radius: 10px;
   border-top-style: none;
 
-  background-color: rgb(15, 15, 15);
+  background-color: var(--primary_color_black);
 }

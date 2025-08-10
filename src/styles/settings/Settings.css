@@ -1,0 +1,35 @@
+.settings_menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#settings_button {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+
+  border-radius: 5px;
+}
+
+#settings_button:hover {
+  background-color: rgb(100, 100, 100);
+}
+
+#settings_button:active {
+  background-color: rgb(150, 150, 150);
+}
+
+#settings_menu_list_backpanel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0);
+}

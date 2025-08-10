@@ -8,12 +8,14 @@
   border: 1px solid rgb(96, 96, 96);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+
+  cursor: pointer;
 }
 
 .nav_button:hover {
-  background-color: rgb(25, 25, 25);
+  background-color: var(--black_button_hover_color);
 }
 
 .nav_button:active {
-  background-color: rgb(40, 40, 40);
+  background-color: var(--black_button_active_color);
 }
