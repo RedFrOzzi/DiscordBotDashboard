@@ -5,3 +5,5 @@ type User = {
   globalName: string | null;
   imageURL: string | null;
 };
+
+export default User;

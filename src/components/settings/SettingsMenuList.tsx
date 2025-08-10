@@ -2,6 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import "../../styles/settings/SettingsMenuList.css";
 import { getUsersURL, serverBaseURL } from "../../utils/ServerUrls";
 import LoadingCircle from "../../svg/LoadingCircle";
+import User from "../../models/User";
+import { useSetAtom } from "jotai";
+import { usersData } from "../../atom/UsersData";
 import { useEffect } from "react";
 
 function SettingsMenuList() {
@@ -14,9 +17,14 @@ function SettingsMenuList() {
     retryOnMount: false,
   });
 
-  //   useEffect(() => {
-  //     loadUsersQuery.data?.forEach((item) => console.log(item));
-  //   }, [loadUsersQuery.data]);
+  const setUsers = useSetAtom(usersData);
+
+  useEffect(() => {
+    if (loadUsersQuery.isSuccess) {
+      loadUsersQuery.data;
+      setUsers(loadUsersQuery.data);
+    }
+  }, [loadUsersQuery.isSuccess]);
 
   return (
     <div id="settings_menu_list">
@@ -28,7 +36,7 @@ function SettingsMenuList() {
           {loadUsersQuery.isFetching ? (
             <LoadingCircle />
           ) : (
-            <p>Load data from database</p>
+            <p>Загрузить данные</p>
           )}
         </li>
       </ul>
