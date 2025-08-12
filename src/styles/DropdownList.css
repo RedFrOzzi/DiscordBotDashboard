@@ -3,7 +3,7 @@
 }
 
 #dropdown_list {
-  width: calc(100vw / 2);
+  min-width: 300px;
   min-height: 50px;
   background-color: rgb(19, 20, 22);
   color: var(--pripamy_text_color);
@@ -21,6 +21,8 @@
 #dropdown_list ul p {
   margin: 0;
   padding: 15px;
+
+  text-align: center;
 
   cursor: pointer;
 }

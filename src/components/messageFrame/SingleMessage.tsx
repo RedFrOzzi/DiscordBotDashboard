@@ -1,24 +1,17 @@
+import "../../styles/SingleMessage.css";
 import { useEffect, useRef, useState } from "react";
-import "../styles/MessageFrame.css";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import ArrowRight from "../svg/ArrowRight.tsx";
-import DropdownList from "./DropdownList.tsx";
-import Channel from "../types/Channel.ts";
+import ArrowRight from "../../svg/ArrowRight";
+import { useMutation } from "@tanstack/react-query";
+import Channel from "../../models/Channel";
+import DropdownList from "../../components/DropdownList";
+import IMessageFrameArgs from "../../types/IMessageFrameArgs";
 
-interface MessageFrameArgs {
-  channels: Channel[];
-}
-
-function MessageFrame(args: MessageFrameArgs) {
+export default function SingleMessage(args: IMessageFrameArgs) {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
   const [text, setText] = useState("");
-  const [channel, setChannel] = useState<Channel>(args.channels[0]);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [channel, setChannel] = useState<Channel | null>(null);
   const [isOpen, setOpen] = useState<Boolean>(false);
-
-  const sendMessage = useMutation({
-    mutationFn: SendMessageMutation,
-  });
 
   useEffect(() => {
     if (textAreaRef.current) {
@@ -28,14 +21,18 @@ function MessageFrame(args: MessageFrameArgs) {
     }
   }, [text]);
 
+  const sendMessage = useMutation({
+    mutationFn: SendMessageMutation,
+  });
+
   const handleText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(event.target.value);
   };
 
   return (
-    <div className="message_frame">
-      <div className="input_row">
-        <button className="ch_id_button" onClick={() => setOpen(true)}>
+    <>
+      <div id="input_row">
+        <button id="ch_id_button" onClick={() => setOpen(true)}>
           <ArrowRight />
         </button>
 
@@ -43,22 +40,21 @@ function MessageFrame(args: MessageFrameArgs) {
           ref={inputRef}
           type="text"
           placeholder="ID канала"
-          value={channel.name}
+          value={channel === null ? "" : channel.name}
           readOnly
           onClick={() => setOpen(true)}
         />
       </div>
       {isOpen ? (
         <DropdownList
-          channels={args.channels}
-          onSelectChannel={setChannel}
+          items={args.channels}
+          onSelectItem={setChannel}
           onLosingFocus={() => setOpen(false)}
         />
-      ) : (
-        <></>
-      )}
+      ) : null}
       <div className="message_frame_separator"></div>
       <textarea
+        id="message_textarea"
         ref={textAreaRef}
         value={text}
         onChange={handleText}
@@ -67,24 +63,25 @@ function MessageFrame(args: MessageFrameArgs) {
 
       <div className="message_frame_separator"></div>
       <button
-        className="send_button"
+        id="send_button"
         onClick={() =>
           sendMessage.mutate({
-            channel: inputRef.current!.value,
+            channelId: channel?.id,
             text: textAreaRef.current!.value,
           })
         }
       >
         Отправить
       </button>
-    </div>
+    </>
   );
 }
 
-export default MessageFrame;
-
 const SendMessageMutation = async (args: SendMessageMutationArgs) => {
-  const url = `https://localhost:7017/send-message?channelId=${args.channel}`;
+  if (args.channelId === undefined) {
+    return;
+  }
+  const url = `https://localhost:7017/send-message?channelId=${args.channelId}`;
   var response = await fetch(url, {
     method: "POST",
     headers: {
@@ -96,6 +93,6 @@ const SendMessageMutation = async (args: SendMessageMutationArgs) => {
 };
 
 interface SendMessageMutationArgs {
-  channel: string;
+  channelId: string | undefined;
   text: string;
 }

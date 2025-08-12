@@ -1,6 +1,16 @@
-.message_frame {
+#message_frame {
   width: 100%;
+  height: 90%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#message_frame_window {
   height: 100%;
+  width: 90%;
 
   display: flex;
   flex-direction: column;
@@ -8,97 +18,17 @@
   align-items: center;
 }
 
-.message_frame textarea {
-  min-height: 50px;
-  overflow-y: hidden;
-  resize: none;
-  width: 50%;
-  box-sizing: border-box;
-  font-size: 2ch;
-  padding: 10px;
-  border-radius: 5px;
-
-  background-color: rgb(19, 20, 22);
-  color: rgb(204, 204, 207);
-}
-
-.message_frame textarea:focus {
-  outline: none;
-  border: 1px solid var(--discord_blue_color);
-}
-
-.input_row {
-  min-height: 3ch;
-  width: 50%;
+#message_frame_navigation {
+  height: 100%;
+  width: 10%;
 
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.ch_id_button {
-  width: 25px;
-  height: 25px;
-  box-sizing: border-box;
-  padding: 0;
-
-  cursor: pointer;
-
-  border: 1px solid rgb(96, 96, 96);
-  border: none;
-  border-radius: 2px;
-
-  background-color: var(--discord_blue_color);
-
-  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.ch_id_button svg {
-  margin-left: 3px;
-}
-
-.ch_id_button:active {
-  background-color: var(--discord_blue_color_active);
-}
-
-.message_frame input {
-  width: 90%;
-  height: 25px;
-  font-size: 1.7ch;
-  box-sizing: border-box;
-  border-style: solid;
-  border-radius: 4px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  background-color: rgb(19, 20, 22);
-  color: rgb(204, 204, 207);
-}
-
-.message_frame input:focus {
-  outline: none;
-  border: 2px solid var(--discord_blue_color);
-}
-
-.message_frame_separator {
-  height: 20px;
-}
-
-.send_button {
-  width: 20%;
-  height: 3.5ch;
-  background-color: var(--discord_blue_color);
-  color: rgb(251, 251, 255);
-
-  border: 1px solid rgb(96, 96, 96);
-  border: none;
-  border-radius: 2px;
-
-  cursor: pointer;
-}
-
-.send_button:active {
-  background-color: var(--discord_blue_color_active);
+#message_frame_navigation > * {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

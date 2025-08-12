@@ -1,16 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 import "../../styles/settings/SettingsMenuList.css";
-import { getUsersURL, serverBaseURL } from "../../utils/ServerUrls";
+import {
+  getUsersURL,
+  getChannelsURL,
+  serverBaseURL,
+} from "../../utils/ServerUrls";
 import LoadingCircle from "../../svg/LoadingCircle";
 import User from "../../models/User";
+import Channel from "../../models/Channel";
 import { useSetAtom } from "jotai";
 import { usersData } from "../../atom/UsersData";
+import { channelsData } from "../../atom/ChannelsData";
 import { useEffect } from "react";
+
+interface FetchedData {
+  users: User[];
+  channels: Channel[];
+}
 
 function SettingsMenuList() {
   const loadUsersQuery = useQuery({
-    queryKey: ["loadUsersQuery"],
-    queryFn: FetchUsers,
+    queryKey: ["loadDataQuery"],
+    queryFn: FetchData,
     enabled: false,
     refetchOnMount: false,
     retry: false,
@@ -18,11 +29,12 @@ function SettingsMenuList() {
   });
 
   const setUsers = useSetAtom(usersData);
+  const setChannels = useSetAtom(channelsData);
 
   useEffect(() => {
     if (loadUsersQuery.isSuccess) {
-      loadUsersQuery.data;
-      setUsers(loadUsersQuery.data);
+      setUsers(loadUsersQuery.data.users);
+      setChannels(loadUsersQuery.data.channels);
     }
   }, [loadUsersQuery.isSuccess]);
 
@@ -44,10 +56,15 @@ function SettingsMenuList() {
   );
 }
 
-async function FetchUsers(): Promise<User[]> {
-  const response = await fetch(serverBaseURL + getUsersURL);
-  console.log("fetched");
-  return (await response.json()) as User[];
+async function FetchData(): Promise<FetchedData> {
+  const response1 = await fetch(serverBaseURL + getUsersURL);
+  const users = (await response1.json()) as User[];
+  const response2 = await fetch(serverBaseURL + getChannelsURL);
+  const channels = (await response2.json()) as Channel[];
+  return {
+    users: users,
+    channels: channels,
+  };
 }
 
 export default SettingsMenuList;

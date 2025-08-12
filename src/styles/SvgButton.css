@@ -1,0 +1,17 @@
+.svg_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 5px;
+}
+
+.svg_button:hover {
+  background-color: var(--black_button_hover_color);
+
+  cursor: pointer;
+}
+
+.svg_button:active {
+  background-color: var(--black_button_active_color);
+}

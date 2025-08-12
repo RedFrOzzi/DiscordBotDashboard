@@ -1,19 +1,13 @@
 import "../styles/DropdownList.css";
-import Channel from "../types/Channel.ts";
+import INamed from "../types/INamed";
+import IDropdownListArgs from "../types/IDropdownListArgs";
 
-interface DropdownListArgs {
-  channels: Channel[];
-  onSelectChannel: (c: Channel) => void;
-  onLosingFocus: () => void;
-}
-
-function DropdownList(args: DropdownListArgs) {
+function DropdownList<T extends INamed>(args: IDropdownListArgs<T>) {
   function OnSelect(key: number) {
-    try {
-      args.onSelectChannel(args.channels[key]);
-    } catch {
-      console.log("Wrong index");
+    if (args === null || args.items === null || args.items.length <= key) {
+      return;
     }
+    args.onSelectItem(args.items[key]);
   }
 
   return (
@@ -21,11 +15,9 @@ function DropdownList(args: DropdownListArgs) {
       <div id="dropdown_backpanel" onClick={args.onLosingFocus}></div>
       <div className="dropdown_frame">
         <div id="dropdown_list">
-          {args === null || args.channels === null ? (
-            <></>
-          ) : (
+          {args === null || args.items === null ? null : (
             <ul>
-              {args.channels.map((channel, i) => (
+              {args.items.map((item, i) => (
                 <li key={i}>
                   <div
                     className="channel_item"
@@ -34,7 +26,7 @@ function DropdownList(args: DropdownListArgs) {
                       args.onLosingFocus();
                     }}
                   >
-                    <p>{channel.name}</p>
+                    <p>{item.name}</p>
                   </div>
                 </li>
               ))}

@@ -1,34 +1,30 @@
 import { useState } from "react";
 import "../styles/MainFrame.css";
 import NavigationRow from "./NavigationRow";
-import MessageFrame from "./MessageFrame";
+import MessageFrame from "./messageFrame/MessageFrame";
 import { useAtomValue } from "jotai";
 import { usersData } from "../atom/UsersData";
+import { channelsData } from "../atom/ChannelsData";
 import User from "../models/User";
+import Channel from "../models/Channel";
 
 function MainFrame() {
   const [frameState, setFrameState] = useState<number>(0);
   const users = useAtomValue(usersData);
+  const channels = useAtomValue(channelsData);
 
   return (
     <div className="main_frame">
       <NavigationRow onButtonClick={(n) => setFrameState(n)} />
-      {SwitchRender(frameState, users)}
+      {SwitchRender(frameState, users, channels)}
     </div>
   );
 }
 
-function SwitchRender(state: number, users: User[]) {
+function SwitchRender(state: number, users: User[], channels: Channel[]) {
   switch (state) {
     case 0:
-      return (
-        <MessageFrame
-          channels={[
-            { id: "1", name: "Poop" },
-            { id: "2", name: "Loop" },
-          ]}
-        />
-      );
+      return <MessageFrame channels={channels} />;
     case 1:
       return (
         <div
@@ -58,6 +54,8 @@ function SwitchRender(state: number, users: User[]) {
       );
     case 2:
       return <h1>Third</h1>;
+    default:
+      return null;
   }
 }
 
