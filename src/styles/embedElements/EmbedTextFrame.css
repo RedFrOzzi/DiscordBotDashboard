@@ -1,0 +1,17 @@
+.embed_text_area {
+  width: 350px;
+
+  overflow-y: hidden;
+  resize: none;
+  padding: 10px 10px 0 10px;
+
+  background-color: var(--primary_color_black);
+  color: rgb(204, 204, 207);
+
+  border: none;
+  border-radius: 5px;
+}
+.embed_text_area:focus {
+  outline: none;
+  border: none;
+}

@@ -2,6 +2,6 @@ import { JSX } from "react";
 
 export default interface ISvgButtonArgs {
   buttonSvg: JSX.Element;
-  key: number;
+  index: number;
   onClickCallback: () => void;
 }

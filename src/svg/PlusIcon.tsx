@@ -1,8 +1,10 @@
-export default function PlusIcon() {
+import ISize from "../types/ISize";
+
+export default function PlusIcon(size: ISize) {
   return (
     <svg
-      width="20px"
-      height="20px"
+      width={size.width}
+      height={size.heigth}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -5,23 +5,25 @@ import SvgButton from "../SvgButton.tsx";
 import SingleMessage from "./SingleMessage.tsx";
 import IMessageFrameArgs from "../../types/IMessageFrameArgs";
 import { useState } from "react";
-import EmbedFrame from "./EmbedFrame.tsx";
+import EmbedFrame from "./embedElements/EmbedFrame.tsx";
+import EmbedBuilder from "../../utils/EmbedBuilder.ts";
 
 export default function MessageFrame(args: IMessageFrameArgs) {
   const [currentWindow, setWindow] = useState<number>(0);
+  const embedBuilder = new EmbedBuilder();
 
   return (
     <div id="message_frame">
       <div id="message_frame_navigation">
         <SvgButton
-          key={0}
+          index={0}
           buttonSvg={MessageOut()}
           onClickCallback={() => {
             setWindow(0);
           }}
         />
         <SvgButton
-          key={1}
+          index={1}
           buttonSvg={EmbedIcon()}
           onClickCallback={() => {
             setWindow(1);
@@ -29,18 +31,22 @@ export default function MessageFrame(args: IMessageFrameArgs) {
         />
       </div>
       <div id="message_frame_window">
-        {ConditionalRender(currentWindow, args)}
+        {ConditionalRender(currentWindow, args, embedBuilder)}
       </div>
     </div>
   );
 }
 
-function ConditionalRender(index: number, args: IMessageFrameArgs) {
+function ConditionalRender(
+  index: number,
+  args: IMessageFrameArgs,
+  builder: EmbedBuilder
+) {
   switch (index) {
     case 0:
       return <SingleMessage {...args} />;
     case 1:
-      return <EmbedFrame {...args} />;
+      return <EmbedFrame args={args} builder={builder} />;
     default:
       return null;
   }

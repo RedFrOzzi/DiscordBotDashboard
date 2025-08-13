@@ -1,0 +1,10 @@
+.embed_field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 2px;
+
+  border: 1px solid var(--border_color_grey);
+}
