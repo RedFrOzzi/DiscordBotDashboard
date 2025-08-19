@@ -1,3 +1,12 @@
+import { useState } from "react";
+import { HexColorPicker } from "react-colorful";
+
 export default function EmbedColorFrame() {
-  return <div></div>;
+  const [color, setColor] = useState<string>("#ffffff");
+
+  return (
+    <div>
+      <HexColorPicker color={color} onChange={setColor} />
+    </div>
+  );
 }

@@ -6,6 +6,7 @@ import DropdownList from "../../DropdownList";
 import EmbedBuilder from "../../../utils/EmbedBuilder";
 import EmbedTextFrame from "./EmbedTextFrame";
 import EmbedFieldFrame from "./EmbedFieldFrame";
+import EmbedColorFrame from "./EmbedColorFrame";
 
 interface EmbedFrameArgs {
   args: IMessageFrameArgs;
@@ -14,6 +15,8 @@ interface EmbedFrameArgs {
 
 export default function EmbedFrame(eArgs: EmbedFrameArgs) {
   const [isOptionsOpen, setOptionsState] = useState(false);
+  const [isColorPickerOpen, setColorPickerState] = useState(false);
+  const [sideColor, setSideColor] = useState<string>("#ffffff");
 
   function onSelectOption(item: { index: number; name: string } | null) {
     if (item === null) {
@@ -36,8 +39,11 @@ export default function EmbedFrame(eArgs: EmbedFrameArgs) {
       <div id="embed_frame">
         <div
           id="embed_color"
-          style={{ backgroundColor: eArgs.builder.embed.color! }}
-        ></div>
+          style={{ backgroundColor: sideColor }}
+          onClick={() => setColorPickerState(true)}
+        >
+          {isColorPickerOpen ? <EmbedColorFrame /> : null}
+        </div>
         <div id="embed_contructor_frame">
           <div id="constructor">
             {eArgs.builder.hasTitle ? (
