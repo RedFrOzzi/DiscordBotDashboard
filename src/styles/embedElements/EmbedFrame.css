@@ -5,9 +5,14 @@
   display: flex;
 }
 
+#embed_frame_scroll_container {
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 20px;
+}
+
 #embed_color {
   width: 20px;
-  height: 100%;
 
   border: 1px solid var(--border_color_grey);
   border-right: none;

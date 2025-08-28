@@ -1,0 +1,31 @@
+#embed_color_picker button {
+  width: 100%;
+  height: 25px;
+
+  font-weight: bold;
+
+  border: none;
+  border-radius: 0 0 8px 8px;
+}
+
+#embed_color_picker button:hover {
+  border: 2px solid white;
+}
+
+.react-colorful__last-control {
+  border-radius: 0 0 0 0 !important;
+}
+
+#embed_color_picker_backpanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#hexcolorpicker {
+  position: absolute;
+}
