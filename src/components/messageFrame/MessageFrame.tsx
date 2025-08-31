@@ -10,7 +10,6 @@ import EmbedBuilder from "../../utils/EmbedBuilder.ts";
 
 export default function MessageFrame(args: IMessageFrameArgs) {
   const [currentWindow, setWindow] = useState<number>(0);
-  const embedBuilder = new EmbedBuilder();
 
   return (
     <div id="message_frame">
@@ -31,22 +30,18 @@ export default function MessageFrame(args: IMessageFrameArgs) {
         />
       </div>
       <div id="message_frame_window">
-        {ConditionalRender(currentWindow, args, embedBuilder)}
+        {ConditionalRender(currentWindow, args)}
       </div>
     </div>
   );
 }
 
-function ConditionalRender(
-  index: number,
-  args: IMessageFrameArgs,
-  builder: EmbedBuilder
-) {
+function ConditionalRender(index: number, args: IMessageFrameArgs) {
   switch (index) {
     case 0:
       return <SingleMessage {...args} />;
     case 1:
-      return <EmbedFrame args={args} builder={builder} />;
+      return <EmbedFrame args={args} />;
     default:
       return null;
   }

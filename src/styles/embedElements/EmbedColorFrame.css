@@ -28,4 +28,6 @@
 
 #hexcolorpicker {
   position: absolute;
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
 }

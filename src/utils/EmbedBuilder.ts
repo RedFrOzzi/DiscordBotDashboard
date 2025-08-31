@@ -1,3 +1,4 @@
+import { RgbColor } from "react-colorful";
 import Embed from "../models/embed/Embed";
 import EmbedAuthor from "../models/embed/EmbedAuthor";
 import EmbedField from "../models/embed/EmbedField";
@@ -31,7 +32,7 @@ export default class EmbedBuilder {
       description: null,
       url: null,
       timestamp: null,
-      color: "black",
+      color: null,
       footer: null,
       image: null,
       thumbnail: null,
@@ -105,8 +106,8 @@ export default class EmbedBuilder {
     this.content = this.content.filter((item) => item.index !== 3);
   }
 
-  public changeColor(text: string) {
-    this.embed.color = text;
+  public changeColor(color: RgbColor) {
+    this.embed.color = color;
   }
 
   public addFooter(footer: EmbedFooter) {

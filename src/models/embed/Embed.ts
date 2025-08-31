@@ -1,3 +1,4 @@
+import { RgbColor } from "react-colorful";
 import EmbedAuthor from "../../models/embed/EmbedAuthor";
 import EmbedField from "../../models/embed/EmbedField";
 import EmbedFooter from "../../models/embed/EmbedFooter";
@@ -9,7 +10,7 @@ type Embed = {
   description: string | null;
   url: string | null;
   timestamp: string | null;
-  color: string | null;
+  color: RgbColor | null;
   footer: EmbedFooter | null;
   image: EmbedImage | null;
   thumbnail: EmbedThumbnail | null;

@@ -1,14 +1,16 @@
 #embed_frame {
-  min-height: 20%;
   min-width: 350px;
 
-  display: flex;
+  display: inline-flex;
 }
 
 #embed_frame_scroll_container {
   overflow-y: auto;
   scrollbar-width: none;
   padding: 20px;
+
+  display: inline-flex;
+  flex-direction: column;
 }
 
 #embed_color {
@@ -17,10 +19,11 @@
   border: 1px solid var(--border_color_grey);
   border-right: none;
   border-radius: 5px 0 0 5px;
+
+  cursor: pointer;
 }
 
 #embed_contructor_frame {
-  height: 100%;
   width: 100%;
 
   border: 1px solid var(--border_color_grey);
@@ -42,6 +45,8 @@
   border-right: none;
   border-radius: 0px 0px 5px 5px;
   outline: none;
+
+  cursor: pointer;
 
   background-color: var(--primary_color_black);
 }
@@ -66,4 +71,53 @@
 
 .embed_element {
   min-width: 100%;
+}
+
+#embed_send_container {
+  margin-top: 25px;
+
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+#embed_send_button {
+  height: 30px;
+
+  color: rgb(235, 235, 235);
+  padding: 0 10px 0 10px;
+  border: none;
+  border-radius: 2px;
+
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: var(--discord_blue_color);
+}
+
+#embed_send_button:hover {
+  background-color: var(--discord_blue_color_hover);
+}
+
+#embed_send_button:active {
+  background-color: var(--discord_blue_color_active);
+}
+
+#embed_cancel_button {
+  height: 30px;
+
+  color: rgb(235, 235, 235);
+  padding: 0 10px 0 10px;
+  border: none;
+  border-radius: 2px;
+
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: rgb(81, 81, 81);
+}
+
+#embed_cancel_button:hover {
+  background-color: rgb(102, 102, 102);
+}
+
+#embed_cancel_button:active {
+  background-color: rgb(122, 122, 122);
 }
