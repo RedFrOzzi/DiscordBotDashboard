@@ -1,0 +1,15 @@
+#users_list_container {
+  width: 100%;
+  height: 1200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #fff rgba(0, 0, 0, 0);
+}

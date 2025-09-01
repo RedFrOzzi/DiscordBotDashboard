@@ -10,6 +10,7 @@ import { RgbColor } from "react-colorful";
 import { useAtom } from "jotai";
 import { embedBuilderData } from "../../../atom/EmbedBuilderData.ts";
 import EmbedBuilder from "../../../utils/EmbedBuilder.ts";
+import { useMutation } from "@tanstack/react-query";
 
 interface EmbedFrameArgs {
   args: IMessageFrameArgs;
