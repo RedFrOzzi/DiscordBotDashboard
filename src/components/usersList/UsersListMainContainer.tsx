@@ -10,10 +10,15 @@ export default function UsersListMainContainer(
   args: UsersListMainContainerArgs
 ) {
   return (
-    <div id="users_list_container">
-      {args.users.map((user, index) => (
-        <UserContainer user={user} key={index} />
-      ))}
-    </div>
+    <>
+      <div id="users_list_search">
+        <input type="text" placeholder="Поиск" />
+      </div>
+      <div id="users_list_container">
+        {args.users.map((user, index) => (
+          <UserContainer user={user} key={index} />
+        ))}
+      </div>
+    </>
   );
 }
