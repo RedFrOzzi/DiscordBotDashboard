@@ -1,6 +1,5 @@
 .user_container {
   width: 100%;
-  height: 150px;
 
   padding-top: 10px;
   padding-bottom: 10px;
@@ -8,6 +7,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.user_container:hover {
+  box-shadow: inset 0 0 0 2px var(--discord_blue_color);
+}
+
+.user_container h3 {
+  margin: 0 20px 0 0;
+}
+
+.user_container p {
+  margin: 5px 20px 5px 0;
 }
 
 .user_container:nth-child(odd) {

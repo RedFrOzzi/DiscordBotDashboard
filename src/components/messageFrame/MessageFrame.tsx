@@ -6,7 +6,6 @@ import SingleMessage from "./SingleMessage.tsx";
 import IMessageFrameArgs from "../../types/IMessageFrameArgs";
 import { useState } from "react";
 import EmbedFrame from "./embedElements/EmbedFrame.tsx";
-import EmbedBuilder from "../../utils/EmbedBuilder.ts";
 
 export default function MessageFrame(args: IMessageFrameArgs) {
   const [currentWindow, setWindow] = useState<number>(0);

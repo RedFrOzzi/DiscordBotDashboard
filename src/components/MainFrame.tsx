@@ -8,21 +8,28 @@ import { channelsData } from "../atom/ChannelsData";
 import User from "../models/User";
 import Channel from "../models/Channel";
 import UsersListMainContainer from "./usersList/UsersListMainContainer";
+import { selectedUser } from "../atom/SelectedUser.ts";
 
 function MainFrame() {
   const [frameState, setFrameState] = useState<number>(0);
   const users = useAtomValue(usersData);
   const channels = useAtomValue(channelsData);
+  const listSelecetedUser = useAtomValue(selectedUser);
 
   return (
     <div className="main_frame">
       <NavigationRow onButtonClick={(n) => setFrameState(n)} />
-      {SwitchRender(frameState, users, channels)}
+      {SwitchRender(frameState, users, channels, listSelecetedUser)}
     </div>
   );
 }
 
-function SwitchRender(state: number, users: User[], channels: Channel[]) {
+function SwitchRender(
+  state: number,
+  users: User[],
+  channels: Channel[],
+  selectedUser: User | null
+) {
   const mockUsers: User[] = [
     {
       id: "0",
@@ -47,11 +54,16 @@ function SwitchRender(state: number, users: User[], channels: Channel[]) {
       imageURL: "",
     },
     { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
+    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
+    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
+    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
+    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
+    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
   ];
 
   switch (state) {
     case 0:
-      return <MessageFrame channels={channels} />;
+      return <MessageFrame channels={channels} selectedUser={selectedUser} />;
     case 1:
       return <UsersListMainContainer users={mockUsers} />;
     case 2:

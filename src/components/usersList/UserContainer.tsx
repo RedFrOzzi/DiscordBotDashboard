@@ -2,14 +2,18 @@ import { ReactNode } from "react";
 import User from "../../models/User";
 import "../../styles/usersListMainContainer/UserContainer.css";
 import DiscordLogo from "../../svg/DiscordLogo";
+import { useSetAtom } from "jotai";
+import { selectedUser } from "../../atom/SelectedUser.ts";
 
 interface UserContainerArgs {
   user: User | null;
 }
 
 export default function UserContainer(args: UserContainerArgs) {
+  const setUser = useSetAtom(selectedUser);
+
   return (
-    <div className="user_container">
+    <div className="user_container" onClick={() => setUser(args.user)}>
       {getUserImageUrl(args.user)}
       <div className="user_info_container">
         <h3>{getUserName(args.user)}</h3>

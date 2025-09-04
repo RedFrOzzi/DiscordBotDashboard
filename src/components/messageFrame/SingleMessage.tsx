@@ -21,6 +21,12 @@ export default function SingleMessage(args: IMessageFrameArgs) {
     }
   }, [text]);
 
+  useEffect(() => {
+    if (args.selectedUser === null) return;
+
+    setText(`@${args.selectedUser.username} `);
+  }, [args.selectedUser]);
+
   const sendMessage = useMutation({
     mutationFn: SendMessageMutation,
   });
