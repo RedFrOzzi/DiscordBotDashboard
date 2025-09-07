@@ -1,0 +1,34 @@
+#ch_s_input_row {
+  min-height: 3ch;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#ch_s_id_button {
+  width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  padding: 0;
+
+  cursor: pointer;
+
+  border: none;
+  border-radius: 2px;
+
+  background-color: var(--discord_blue_color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ch_s_id_button svg {
+  margin-left: 3px;
+}
+
+#ch_s_id_button:active {
+  background-color: var(--discord_blue_color_active);
+}

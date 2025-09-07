@@ -11,6 +11,8 @@ import { useAtom } from "jotai";
 import { embedBuilderData } from "../../../atom/EmbedBuilderData.ts";
 import EmbedBuilder from "../../../utils/EmbedBuilder.ts";
 import { useMutation } from "@tanstack/react-query";
+import ChannelsSelector from "../../ChannelsSelector.tsx";
+import Channel from "../../../models/Channel.ts";
 
 interface EmbedFrameArgs {
   args: IMessageFrameArgs;
@@ -26,6 +28,7 @@ export default function EmbedFrame(eArgs: EmbedFrameArgs) {
       ? embedBuilder.embed.color
       : { r: 0, g: 0, b: 0 }
   );
+  const [channel, setChannel] = useState<Channel | null>(null);
 
   useEffect(() => {
     embedBuilder.changeColor(sideColor);
@@ -50,6 +53,13 @@ export default function EmbedFrame(eArgs: EmbedFrameArgs) {
         />
       ) : null}
       <div id="embed_frame_scroll_container">
+        <div id="embed_frame_chennels">
+          <ChannelsSelector
+            channels={eArgs.args.channels}
+            selectedChannel={channel}
+            setSelectedChannel={setChannel}
+          />
+        </div>
         <div id="embed_frame">
           <div
             id="embed_color"

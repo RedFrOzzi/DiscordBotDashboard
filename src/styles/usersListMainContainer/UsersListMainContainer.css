@@ -28,6 +28,7 @@
 
 #users_list_search > input {
   width: 40%;
+  padding: 0 10px 0 10px;
 
   color: rgb(230, 230, 230);
   height: 30px;

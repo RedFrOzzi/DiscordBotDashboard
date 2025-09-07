@@ -5,13 +5,12 @@ import { useMutation } from "@tanstack/react-query";
 import Channel from "../../models/Channel";
 import DropdownList from "../../components/DropdownList";
 import IMessageFrameArgs from "../../types/IMessageFrameArgs";
+import ChannelsSelector from "../ChannelsSelector";
 
 export default function SingleMessage(args: IMessageFrameArgs) {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [text, setText] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
   const [channel, setChannel] = useState<Channel | null>(null);
-  const [isOpen, setOpen] = useState<Boolean>(false);
 
   useEffect(() => {
     if (textAreaRef.current) {
@@ -37,27 +36,13 @@ export default function SingleMessage(args: IMessageFrameArgs) {
 
   return (
     <>
-      <div id="input_row">
-        <button id="ch_id_button" onClick={() => setOpen(true)}>
-          <ArrowRight />
-        </button>
-
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="ID канала"
-          value={channel === null ? "" : channel.name}
-          readOnly
-          onClick={() => setOpen(true)}
+      <div id="message_frame_ch_selector">
+        <ChannelsSelector
+          channels={args.channels}
+          selectedChannel={channel}
+          setSelectedChannel={setChannel}
         />
       </div>
-      {isOpen ? (
-        <DropdownList
-          items={args.channels}
-          onSelectItem={setChannel}
-          onLosingFocus={() => setOpen(false)}
-        />
-      ) : null}
       <div className="message_frame_separator"></div>
       <textarea
         id="message_textarea"
@@ -68,17 +53,28 @@ export default function SingleMessage(args: IMessageFrameArgs) {
       ></textarea>
 
       <div className="message_frame_separator"></div>
-      <button
-        id="send_button"
-        onClick={() =>
-          sendMessage.mutate({
-            channelId: channel?.id,
-            text: textAreaRef.current!.value,
-          })
-        }
-      >
-        Отправить
-      </button>
+      <div id="nessage_buttons_group">
+        <button
+          id="message_clear_button"
+          onClick={() => {
+            args.setSelectedUserCallback(null);
+            setText("");
+          }}
+        >
+          Очистить
+        </button>
+        <button
+          id="message_send_button"
+          onClick={() =>
+            sendMessage.mutate({
+              channelId: channel?.id,
+              text: textAreaRef.current!.value,
+            })
+          }
+        >
+          Отправить
+        </button>
+      </div>
     </>
   );
 }

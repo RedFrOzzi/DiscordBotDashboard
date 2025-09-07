@@ -47,9 +47,10 @@ export default function UsersListMainContainer(
         />
       </div>
       <div id="users_list_container">
-        {filteredUsers.map((user, index) => (
-          <UserContainer user={user} key={index} />
-        ))}
+        {filteredUsers.length > 0 &&
+          filteredUsers.map((user, index) => (
+            <UserContainer user={user} key={index} />
+          ))}
       </div>
     </>
   );
