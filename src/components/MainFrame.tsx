@@ -9,6 +9,7 @@ import User from "../models/User";
 import Channel from "../models/Channel";
 import UsersListMainContainer from "./usersList/UsersListMainContainer";
 import { selectedUser } from "../atom/SelectedUser.ts";
+import SummaryMainFrame from "./summaryFrame/SummaryMainFrame.tsx";
 
 function MainFrame() {
   const [frameState, setFrameState] = useState<number>(0);
@@ -37,37 +38,6 @@ function SwitchRender(
   selectedUser: User | null,
   setSelectedUser: (user: User | null) => void
 ) {
-  const mockUsers: User[] = [
-    {
-      id: "0",
-      username: "poop",
-      nickname: "",
-      globalName: "Poopa and Loopa Corp",
-      imageURL: "",
-    },
-    { id: "1", username: "poop2", nickname: "", globalName: "", imageURL: "" },
-    {
-      id: "2",
-      username: "poop3",
-      nickname: "Keke",
-      globalName: "",
-      imageURL: "",
-    },
-    {
-      id: "3243423423554656734546774",
-      username: "poop4",
-      nickname: "",
-      globalName: "",
-      imageURL: "",
-    },
-    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
-    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
-    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
-    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
-    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
-    { id: "4", username: "poop5", nickname: "", globalName: "", imageURL: "" },
-  ];
-
   switch (state) {
     case 0:
       return (
@@ -78,9 +48,9 @@ function SwitchRender(
         />
       );
     case 1:
-      return <UsersListMainContainer users={mockUsers} />;
+      return <UsersListMainContainer users={users} />;
     case 2:
-      return <h1>Third</h1>;
+      return <SummaryMainFrame />;
     default:
       return null;
   }

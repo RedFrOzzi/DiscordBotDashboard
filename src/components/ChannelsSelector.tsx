@@ -2,7 +2,7 @@ import "../styles/ChannelsSelector.css";
 import { useRef, useState } from "react";
 import ArrowRight from "../svg/ArrowRight";
 import Channel from "../models/Channel";
-import DropdownList from "./DropdownList";
+import ChannelsList from "./ChannelsList";
 
 interface ChannelsSelectorArgs {
   channels: Channel[];
@@ -31,10 +31,10 @@ export default function ChannelsSelector(args: ChannelsSelectorArgs) {
         />
       </div>
       {isOpen ? (
-        <DropdownList
-          items={args.channels}
+        <ChannelsList
+          channels={args.channels}
           onSelectItem={args.setSelectedChannel}
-          onLosingFocus={() => setOpen(false)}
+          onLoosingFocus={() => setOpen(false)}
         />
       ) : null}
     </>

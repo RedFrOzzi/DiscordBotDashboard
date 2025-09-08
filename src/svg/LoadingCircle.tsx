@@ -1,8 +1,11 @@
-export default function LoadingCircle() {
+export default function LoadingCircle(args: {
+  width?: string;
+  heigth?: string;
+}) {
   return (
     <svg
-      width="30px"
-      height="30px"
+      width={args.width || "30px"}
+      height={args.heigth || "30px"}
       viewBox="-1.6 -1.6 19.20 19.20"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

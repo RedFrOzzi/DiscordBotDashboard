@@ -31,7 +31,7 @@ function NavigationRow(args: NavigationRowArgs) {
       />
       <NavButton
         position="right"
-        name="Канал"
+        name="Сводка"
         cssProps={frameState == 2 ? activeFrameStyle : inActiveFrameStyle}
         callback={() => {
           args.onButtonClick(2);

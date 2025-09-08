@@ -1,8 +1,8 @@
 import "../styles/DropdownList.css";
-import INamed from "../types/INamed";
+import IListItem from "../types/IListItem";
 import IDropdownListArgs from "../types/IDropdownListArgs";
 
-function DropdownList<T extends INamed>(args: IDropdownListArgs<T>) {
+function DropdownList<T extends IListItem>(args: IDropdownListArgs<T>) {
   function OnSelect(key: number) {
     if (args === null || args.items === null || args.items.length <= key) {
       return;
@@ -26,6 +26,7 @@ function DropdownList<T extends INamed>(args: IDropdownListArgs<T>) {
                       args.onLosingFocus();
                     }}
                   >
+                    {item.icon}
                     <p>{item.name}</p>
                   </div>
                 </li>

@@ -1,0 +1,61 @@
+#summary_main_frame {
+  width: 100%;
+  height: 90%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+
+  border-radius: 0 0 10px 10px;
+
+  color: rgb(230, 230, 230);
+}
+
+#summary_list_container {
+  width: 95%;
+  height: 100%;
+
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 0;
+
+  border: 1px solid var(--primary_color_black_active);
+  border-radius: 10px;
+
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--discord_blue_color) rgba(0, 0, 0, 0);
+}
+
+#refresh_summary_button {
+  padding: 10px 5px 10px 5px;
+
+  border: 1px solid rgb(96, 96, 96);
+  border-radius: 2px;
+
+  cursor: pointer;
+
+  color: rgb(230, 230, 230);
+  background-color: var(--primary_color_black_hover);
+}
+
+#refresh_summary_button:active {
+  background-color: var(--primary_color_black_active);
+}
+
+#summary_list_container svg {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
