@@ -16,10 +16,17 @@ export default function SummaryItemContainer(args: ISummaryItemContainerArgs) {
     <div className="summary_item_container">
       {args.items.map((item, index) => (
         <div key={index}>
-          <p>{`username: ${item.username}`}</p>
-          <p>{`content: ${item.content}`}</p>
+          <h6>{GetUsername(item)}</h6>
+          <p>{item.content}</p>
         </div>
       ))}
     </div>
   );
+}
+
+function GetUsername(item: ISummaryItem): string {
+  if (item.nickname && item.nickname !== "")
+    return `${item.nickname}(${item.username})`;
+
+  return item.username;
 }

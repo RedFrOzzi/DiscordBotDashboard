@@ -31,6 +31,11 @@ export default function SummaryMainFrame() {
           <SummaryItemContainer
             items={[
               { username: "Poopa", content: "poop" },
+              {
+                username: "Loopa",
+                content:
+                  "dfsndfnsdu isdbfh bhfhsdbh bbs dfhb jhbsdbfh jhdb fjhbshfbdbf  jhsdbfhbsdfbyeb jshdbfhbsdfbhsbk sbhdfhb evbfk sdvb jhbsdf bsdfbhwe uh bhjbf ",
+              },
               { username: "Loopa", content: "loop" },
             ]}
           />
