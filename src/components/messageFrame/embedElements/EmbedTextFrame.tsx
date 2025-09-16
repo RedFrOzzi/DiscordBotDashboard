@@ -5,6 +5,7 @@ interface EmbedTextFrameArgs {
   placeholder: string;
   fontSize: string;
   maxHeigth?: string | null;
+  onTextChange?: (text: string) => void;
 }
 
 export default function EmbedTextFrame(args: EmbedTextFrameArgs) {
@@ -12,6 +13,8 @@ export default function EmbedTextFrame(args: EmbedTextFrameArgs) {
   const [text, setText] = useState("");
 
   useEffect(() => {
+    args.onTextChange && args.onTextChange(text);
+
     if (
       textAreaRef.current &&
       (args.maxHeigth === null || args.maxHeigth === undefined)

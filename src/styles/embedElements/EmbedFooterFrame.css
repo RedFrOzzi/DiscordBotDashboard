@@ -1,0 +1,12 @@
+#embed_frame_footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-top: 1px solid var(--border_color_grey);
+}
+
+#embed_frame_footer > img {
+  width: 0.85rem;
+}

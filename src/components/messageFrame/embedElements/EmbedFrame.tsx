@@ -13,6 +13,7 @@ import EmbedBuilder from "../../../utils/EmbedBuilder.ts";
 import { useMutation } from "@tanstack/react-query";
 import ChannelsSelector from "../../ChannelsSelector.tsx";
 import Channel from "../../../models/Channel.ts";
+import EmbedFooterFrame from "./EmbedFooterFrame.tsx";
 
 interface EmbedFrameArgs {
   args: IMessageFrameArgs;
@@ -43,7 +44,7 @@ export default function EmbedFrame(eArgs: EmbedFrameArgs) {
 
   return (
     <>
-      {isOptionsOpen ? (
+      {isOptionsOpen && (
         <DropdownList
           items={embedBuilder.content}
           onSelectItem={(item) => onSelectOption(item)}
@@ -51,7 +52,7 @@ export default function EmbedFrame(eArgs: EmbedFrameArgs) {
             setOptionsState(false);
           }}
         />
-      ) : null}
+      )}
       <div id="embed_frame_scroll_container">
         <div id="embed_frame_chennels">
           <ChannelsSelector
@@ -68,37 +69,45 @@ export default function EmbedFrame(eArgs: EmbedFrameArgs) {
             }}
             onClick={() => setColorPickerState(true)}
           >
-            {isColorPickerOpen ? (
+            {isColorPickerOpen && (
               <EmbedColorFrame
                 setColorCallback={setSideColor}
                 closePanelCallback={() => {
                   setColorPickerState(false);
                 }}
               />
-            ) : null}
+            )}
           </div>
           <div id="embed_contructor_frame">
             <div id="constructor">
-              {embedBuilder.hasTitle ? (
+              {embedBuilder.hasTitle && (
                 <div className="embed_element">
                   <EmbedTextFrame placeholder="Заглавие..." fontSize="2.4ch" />
                 </div>
-              ) : null}
-              {embedBuilder.hasDescription ? (
+              )}
+              {embedBuilder.hasDescription && (
                 <div className="embed_element">
                   <EmbedTextFrame placeholder="Описание..." fontSize="2ch" />
                 </div>
-              ) : null}
-              {embedBuilder.hasUrl ? (
+              )}
+              {embedBuilder.hasUrl && (
                 <div className="embed_element">
                   <a href={embedBuilder.embed.url!}>embedBuilder.embed.url</a>
                 </div>
-              ) : null}
+              )}
               {EnumerateFields(embedBuilder.fieldsCount)}
+              {embedBuilder.hasFooter && (
+                <div className="embed_element">
+                  <EmbedFooterFrame embedBuilder={embedBuilder} />
+                </div>
+              )}
             </div>
             <button
               id="add_element_button"
-              onClick={() => setOptionsState(true)}
+              onClick={() => {
+                !embedBuilder && setBuilder(new EmbedBuilder());
+                setOptionsState(true);
+              }}
             >
               <PlusIcon heigth="20px" width="20px" />
             </button>

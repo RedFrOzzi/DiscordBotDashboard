@@ -24,6 +24,7 @@ export default class EmbedBuilder {
   hasTitle = false;
   hasDescription = false;
   hasUrl = false;
+  hasFooter = false;
   fieldsCount = 0;
 
   constructor() {
@@ -60,6 +61,8 @@ export default class EmbedBuilder {
         this.removeTimestampOption();
         break;
       case 5:
+        this.embed.footer = { text: "", icon_url: null };
+        this.hasFooter = true;
         this.removeFooterOption();
         break;
       case 6:
@@ -110,8 +113,8 @@ export default class EmbedBuilder {
     this.embed.color = color;
   }
 
-  public addFooter(footer: EmbedFooter) {
-    this.embed.footer = footer;
+  public changeFooterText(text: string) {
+    console.log(this.embed);
   }
   private removeFooterOption() {
     this.content = this.content.filter((item) => item.index !== 5);
